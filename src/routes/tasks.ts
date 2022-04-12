@@ -14,6 +14,13 @@ router.get("/", [auth], async (req: AuthorizedRequest, res: Response) => {
     return res.send(tasks);
 });
 
+router.get("/assigned/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
+    const tasks = await Task.find({members: req.params.id});
+    if(!tasks) return res.status(404).send();
+
+    return res.send(tasks);
+});
+
 router.get("/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
     const task = Task.findById(req.params.id);
     if(!task) return res.status(404).send();
@@ -41,8 +48,8 @@ router.post("/", [auth], async (req: AuthorizedRequest, res: Response, next: Nex
 });
 
 router.patch("/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
-    const {error} = validateTask(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
+    // const {error} = validateTask(req.body);
+    // if (error) return res.status(400).send(error.details[0].message);
 
     const udpatedtask = await Task.findByIdAndUpdate(req.params.id, req.body);
     return res.send(udpatedtask);
