@@ -4,7 +4,6 @@ import AuthorizedRequest from '../types/AuthorizedRequest';
 
 
 export default (req: AuthorizedRequest, res: Response, next: NextFunction) => {
-    console.log("Hello");
     const token = req.headers['x-auth-token'] as string;
     if (!token) return res.status(401).send("Access deined. No token provided.");
     try {

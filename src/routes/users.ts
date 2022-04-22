@@ -66,7 +66,8 @@ router.patch("/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
 });
 
 router.delete("/:id", [auth, admin], async (req: AuthorizedRequest, res: Response) => {
-    const deletedUser = await User.deleteOne({id: req.params.id});
+    console.log(req.params.id);
+    const deletedUser = await User.deleteOne({_id: req.params.id});
     return res.send(deletedUser);
 });
 

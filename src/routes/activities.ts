@@ -40,7 +40,7 @@ router.patch("/:id", [auth, admin], async (req: AuthorizedRequest, res: Response
 });
 
 router.delete("/:id", [auth, admin], async (req: AuthorizedRequest, res: Response) => {
-    const deletedActivity = await Activity.deleteOne({id: req.params.id});
+    const deletedActivity = await Activity.deleteOne({_id: req.params.id});
     return res.send(deletedActivity);
 });
 

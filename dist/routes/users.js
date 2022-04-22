@@ -61,7 +61,8 @@ router.patch("/:id", [auth_1.default], async (req, res) => {
     return res.send(updatedUser);
 });
 router.delete("/:id", [auth_1.default, admin_1.default], async (req, res) => {
-    const deletedUser = await user_1.UserSchema.deleteOne({ id: req.params.id });
+    console.log(req.params.id);
+    const deletedUser = await user_1.UserSchema.deleteOne({ _id: req.params.id });
     return res.send(deletedUser);
 });
 exports.default = router;

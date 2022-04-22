@@ -49,7 +49,7 @@ router.patch("/:id", [auth_1.default], async (req, res) => {
     return res.send(udpatedtask);
 });
 router.delete("/:id", [auth_1.default, admin_1.default], async (req, res) => {
-    const deletedtask = await task_1.TaskSchema.deleteOne({ id: req.params.id });
+    const deletedtask = await task_1.TaskSchema.deleteOne({ _id: req.params.id });
     return res.send(deletedtask);
 });
 exports.default = router;

@@ -38,7 +38,7 @@ router.patch("/:id", [auth_1.default, admin_1.default], async (req, res) => {
     return res.send(udpatedActivity);
 });
 router.delete("/:id", [auth_1.default, admin_1.default], async (req, res) => {
-    const deletedActivity = await activity_1.ActivitySchema.deleteOne({ id: req.params.id });
+    const deletedActivity = await activity_1.ActivitySchema.deleteOne({ _id: req.params.id });
     return res.send(deletedActivity);
 });
 exports.default = router;

@@ -23,6 +23,7 @@ router.post("/", [auth_1.default, admin_1.default], async (req, res, next) => {
         const { error } = (0, project_1.validateProject)(req.body);
         if (error)
             return res.status(400).send(error.details[0].message);
+        console.log(req.body);
         const project = await new project_1.ProjectSchema({ ...req.body, createdBy: req.user._id }).save();
         return res.status(201).send(project);
     }
@@ -38,7 +39,7 @@ router.patch("/:id", [auth_1.default], async (req, res) => {
     return res.send(udpatedProject);
 });
 router.delete("/:id", [auth_1.default], async (req, res) => {
-    const deletedProject = await project_1.ProjectSchema.deleteOne({ id: req.params.id });
+    const deletedProject = await project_1.ProjectSchema.deleteOne({ _id: req.params.id });
     return res.send(deletedProject);
 });
 exports.default = router;

@@ -22,6 +22,7 @@ router.post("/", [auth, admin], async (req: AuthorizedRequest, res: Response, ne
     try {
         const { error } = validateProject(req.body);
         if (error) return res.status(400).send(error.details[0].message);
+        console.log(req.body);
         const project = await new Project({...req.body, createdBy: req.user!._id}).save();
         return res.status(201).send(project);
     } catch(error) {
@@ -38,7 +39,7 @@ router.patch("/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
 });
 
 router.delete("/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
-    const deletedProject = await Project.deleteOne({id: req.params.id});
+    const deletedProject = await Project.deleteOne({_id: req.params.id});
     return res.send(deletedProject);
 });
 

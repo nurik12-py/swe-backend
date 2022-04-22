@@ -56,7 +56,7 @@ router.patch("/:id", [auth], async (req: AuthorizedRequest, res: Response) => {
 });
 
 router.delete("/:id", [auth, admin], async (req: AuthorizedRequest, res: Response) => {
-    const deletedtask = await Task.deleteOne({id: req.params.id});
+    const deletedtask = await Task.deleteOne({_id: req.params.id});
     return res.send(deletedtask);
 });
 

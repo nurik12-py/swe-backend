@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const jsonwebtoken_1 = require("jsonwebtoken");
 exports.default = (req, res, next) => {
-    console.log("Hello");
     const token = req.headers['x-auth-token'];
     if (!token)
         return res.status(401).send("Access deined. No token provided.");
